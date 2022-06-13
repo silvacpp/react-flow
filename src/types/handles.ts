@@ -6,6 +6,7 @@ export type HandleType = 'source' | 'target';
 export interface HandleElement extends XYPosition, Dimensions {
   id?: string | null;
   position: Position;
+  color?: string | null;
 }
 
 export interface StartHandle {
@@ -17,6 +18,7 @@ export interface StartHandle {
 export interface HandleProps {
   type: HandleType;
   position: Position;
+  color?: string;
   isConnectable?: boolean;
   onConnect?: OnConnect;
   isValidConnection?: (connection: Connection) => boolean;

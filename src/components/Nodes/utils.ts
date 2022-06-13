@@ -32,10 +32,12 @@ export const getHandleBoundsByHandleType = (
     const dimensions = getDimensions(handle);
     const handleId = handle.getAttribute('data-handleid');
     const handlePosition = handle.getAttribute('data-handlepos') as unknown as Position;
+    const handleColor = handle.getAttribute('data-handlecolor') as string;
 
     return {
       id: handleId,
       position: handlePosition,
+      color: handleColor || 'blue',
       x: (bounds.left - parentBounds.left) / k,
       y: (bounds.top - parentBounds.top) / k,
       ...dimensions,

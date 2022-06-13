@@ -35,6 +35,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
       isValidConnection = alwaysValid,
       isConnectable = true,
       id,
+      color,
       onConnect,
       children,
       className,
@@ -50,7 +51,6 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
       onConnectStart,
       onConnectStop,
       onConnectEnd,
-      onClickConnectStart,
       onClickConnectStop,
       onClickConnectEnd,
       connectionMode,
@@ -60,6 +60,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     } = useStore(selector, shallow);
 
     const handleId = id || null;
+    const handleColor = color || null;
     const isTarget = type === 'target';
 
     const onConnectExtended = (params: Connection) => {
@@ -101,7 +102,6 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
 
     const onClick = (event: React.MouseEvent) => {
       if (!connectionStartHandle) {
-        onClickConnectStart?.(event, { nodeId, handleId, handleType: type });
         store.setState({ connectionStartHandle: { nodeId, type, handleId } });
         return;
       }
@@ -147,6 +147,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     return (
       <div
         data-handleid={handleId}
+        data-handlecolor={handleColor}
         data-nodeid={nodeId}
         data-handlepos={position}
         className={handleClasses}
