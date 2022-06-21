@@ -30,6 +30,9 @@ export {
   getTransformForBounds,
   getRectOfNodes,
 } from './utils/graph';
+export { 
+  getHostForElement
+} from './utils'
 export { applyNodeChanges, applyEdgeChanges } from './utils/changes';
 export { getMarkerEnd, getCenter as getEdgeCenter } from './components/Edges/utils';
 
