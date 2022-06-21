@@ -33,6 +33,7 @@ export function checkElementBelowIsValid(
   doc: Document | ShadowRoot
 ) {
   const elementBelow = doc.elementFromPoint(event.clientX, event.clientY);
+  console.log('elementBelowValid', elementBelow);
   const elementBelowIsTarget = elementBelow?.classList.contains('target') || false;
   const elementBelowIsSource = elementBelow?.classList.contains('source') || false;
 
@@ -106,7 +107,6 @@ export function handleMouseDown(
   }
 
   const elementBelow = doc.elementFromPoint(event.clientX, event.clientY);
-  console.log('elementBelow', elementBelow)
   const elementBelowIsTarget = elementBelow?.classList.contains('target');
   const elementBelowIsSource = elementBelow?.classList.contains('source');
 
