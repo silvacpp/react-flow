@@ -37,6 +37,13 @@ export function checkElementBelowIsValid(
   const elementBelowIsNode = elementBelow?.classList.contains('react-flow__node') || false;
   const elementBelowIsSource = elementBelow?.classList.contains('source') || false;
 
+  console.log({
+    elementBelow,
+    elementBelowIsTarget,
+    elementBelowIsNode,
+    elementBelowIsSource,
+  });
+
   const result: Result = {
     elementBelow,
     isValid: false,
