@@ -37,8 +37,6 @@ export function checkElementBelowIsValid(
   const elementBelowIsNode = elementBelow?.classList.contains('react-flow__node') || false;
   const elementBelowIsSource = elementBelow?.classList.contains('source') || false;
 
- 
-
   const result: Result = {
     elementBelow,
     isValid: false,
@@ -46,7 +44,7 @@ export function checkElementBelowIsValid(
     isHoveringHandle: false,
   };
 
-  if (elementBelow && (elementBelowIsTarget || elementBelowIsSource)) {
+  if (elementBelow && (elementBelowIsTarget || elementBelowIsSource || elementBelowIsNode)) {
     result.isHoveringHandle = true;
 
     // in strict mode we don't allow target to target or source to source connections
