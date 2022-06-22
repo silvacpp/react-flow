@@ -63,12 +63,6 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     const handleId = id || null;
     const handleColor = color || null;
     const isTarget = type === 'target';
-    const state = store.getState();
-    const connections = state.edges.filter((edge: Edge) => edge.source === nodeId && edge.sourceHandle === handleId);
-
-    if (!isTarget && connections.length >= maxConnections) {
-      isConnectable = false;
-    }
 
     const onConnectExtended = (params: Connection) => {
       const { defaultEdgeOptions } = store.getState();
