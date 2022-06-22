@@ -151,6 +151,7 @@ const EdgeRenderer = (props: EdgeRendererProps) => {
                   className={cc([edge.className, props.noPanClassName])}
                   type={edgeType}
                   data={edge.data}
+                  color={edge.color}
                   selected={!!edge.selected}
                   animated={!!edge.animated}
                   hidden={!!edge.hidden}

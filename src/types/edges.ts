@@ -10,7 +10,7 @@ export interface Edge<T = any> {
   type?: string;
   source: string;
   target: string;
-  color?: String;
+  color?: string;
   sourceHandle?: string | null;
   targetHandle?: string | null;
   label?: string | ReactNode;
