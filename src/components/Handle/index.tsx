@@ -34,7 +34,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
       position = Position.Top,
       isValidConnection = alwaysValid,
       isConnectable = true,
-      maxConnections,
+      maxConnections = 1,
       id,
       color,
       onConnect,
@@ -65,17 +65,8 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     const isTarget = type === 'target';
     const { edges } = store.getState();
 
-    const connections = edges.filter((edge: Edge) => edge.target === nodeId);
-
-    console.log(nodeId, {
-      isTarget,
-      edges,
-      nodeId,
-      maxConnections,
-      connections,
-    });
-
-    if (!isTarget && maxConnections && connections.length >= maxConnections) {
+    const connections = edges.filter((edge: Edge) => edge.source === nodeId && edge.sourceHandle === handleId);
+    if (!isTarget && connections.length >= maxConnections) {
       isConnectable = false;
     }
 
