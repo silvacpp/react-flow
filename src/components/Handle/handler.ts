@@ -37,12 +37,7 @@ export function checkElementBelowIsValid(
   const elementBelowIsNode = elementBelow?.classList.contains('react-flow__node') || false;
   const elementBelowIsSource = elementBelow?.classList.contains('source') || false;
 
-  console.log({
-    elementBelow,
-    elementBelowIsTarget,
-    elementBelowIsNode,
-    elementBelowIsSource,
-  });
+ 
 
   const result: Result = {
     elementBelow,
@@ -57,7 +52,7 @@ export function checkElementBelowIsValid(
     // in strict mode we don't allow target to target or source to source connections
     const isValid =
       connectionMode === ConnectionMode.Strict
-        ? (isTarget && elementBelowIsSource) || (!isTarget && elementBelowIsTarget) || (isTarget && elementBelowIsNode)
+        ? (isTarget && elementBelowIsSource) || (!isTarget && elementBelowIsTarget) || (!isTarget && elementBelowIsNode)
         : true;
 
     if (isValid) {
