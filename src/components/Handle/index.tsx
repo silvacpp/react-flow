@@ -65,7 +65,8 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     const isTarget = type === 'target';
     const { edges } = store.getState();
 
-    const connections = edges.filter((edge: Edge) => edge.source === nodeId);
+    const connections = edges.filter((edge: Edge) => edge.target === nodeId);
+    
     if (!isTarget && maxConnections && connections.length >= maxConnections) {
       isConnectable = false;
     }
