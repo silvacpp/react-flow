@@ -46,6 +46,7 @@ export interface EdgeProps<T = any> {
   sourceY: number;
   targetX: number;
   targetY: number;
+  color?: string;
   selected?: boolean;
   animated?: boolean;
   sourcePosition: Position;
@@ -92,6 +93,7 @@ export interface WrapEdgeProps<T = any> {
   onClick?: EdgeMouseHandler;
   onEdgeDoubleClick?: EdgeMouseHandler;
   selected: boolean;
+  color?: string;
   animated?: boolean;
   label?: string | ReactNode;
   labelStyle?: CSSProperties;

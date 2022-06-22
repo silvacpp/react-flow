@@ -23,6 +23,7 @@ export default (EdgeComponent: ComponentType<EdgeProps>) => {
     onClick,
     onEdgeDoubleClick,
     selected,
+    color,
     animated,
     label,
     labelStyle,
@@ -151,6 +152,7 @@ export default (EdgeComponent: ComponentType<EdgeProps>) => {
           source={source}
           target={target}
           selected={selected}
+          color={color}
           animated={animated}
           label={label}
           labelStyle={labelStyle}
