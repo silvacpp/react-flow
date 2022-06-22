@@ -33,8 +33,8 @@ export function checkElementBelowIsValid(
   doc: Document | ShadowRoot
 ) {
   const elementBelow = doc.elementFromPoint(event.clientX, event.clientY);
-  console.log('elementBelowValid', elementBelow);
   const elementBelowIsTarget = elementBelow?.classList.contains('target') || false;
+  const elementBelowIsNode = elementBelow?.classList.contains('react-flow__node') || false;
   const elementBelowIsSource = elementBelow?.classList.contains('source') || false;
 
   const result: Result = {
@@ -50,12 +50,12 @@ export function checkElementBelowIsValid(
     // in strict mode we don't allow target to target or source to source connections
     const isValid =
       connectionMode === ConnectionMode.Strict
-        ? (isTarget && elementBelowIsSource) || (!isTarget && elementBelowIsTarget)
+        ? (isTarget && elementBelowIsSource) || (!isTarget && elementBelowIsTarget) || (isTarget && elementBelowIsNode)
         : true;
 
     if (isValid) {
-      const elementBelowNodeId = elementBelow.getAttribute('data-nodeid');
-      const elementBelowHandleId = elementBelow.getAttribute('data-handleid');
+      const elementBelowNodeId = elementBelow.getAttribute('data-id');
+      const elementBelowHandleId = null;
       const connection: Connection = isTarget
         ? {
             source: elementBelowNodeId,
@@ -79,8 +79,8 @@ export function checkElementBelowIsValid(
 }
 
 function resetRecentHandle(hoveredHandle: Element): void {
-  hoveredHandle?.classList.remove('react-flow__handle-valid');
-  hoveredHandle?.classList.remove('react-flow__handle-connecting');
+  hoveredHandle?.classList.remove('react-flow__node-valid');
+  hoveredHandle?.classList.remove('react-flow__node-connecting');
 }
 
 export function handleMouseDown(
@@ -156,8 +156,8 @@ export function handleMouseDown(
 
     if (!isOwnHandle && elementBelow) {
       recentHoveredHandle = elementBelow;
-      elementBelow.classList.add('react-flow__handle-connecting');
-      elementBelow.classList.toggle('react-flow__handle-valid', isValid);
+      elementBelow.classList.add('react-flow__node-connecting');
+      elementBelow.classList.toggle('react-flow__node-valid', isValid);
     }
   }
 

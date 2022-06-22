@@ -18,6 +18,7 @@ export interface StartHandle {
 export interface HandleProps {
   type: HandleType;
   position: Position;
+  maxConnections?: Number;
   color?: string;
   isConnectable?: boolean;
   onConnect?: OnConnect;

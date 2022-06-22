@@ -4,7 +4,7 @@ import shallow from 'zustand/shallow';
 
 import { useStore, useStoreApi } from '../../store';
 import NodeIdContext from '../../contexts/NodeIdContext';
-import { HandleProps, Connection, ReactFlowState, Position } from '../../types';
+import { HandleProps, Connection, ReactFlowState, Position, Edge } from '../../types';
 import { checkElementBelowIsValid, handleMouseDown } from './handler';
 import { getHostForElement } from '../../utils';
 import { addEdge } from '../../utils/graph';
@@ -34,6 +34,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
       position = Position.Top,
       isValidConnection = alwaysValid,
       isConnectable = true,
+      maxConnections,
       id,
       color,
       onConnect,
@@ -62,6 +63,12 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     const handleId = id || null;
     const handleColor = color || null;
     const isTarget = type === 'target';
+    const { edges } = store.getState();
+
+    const connections = !isTarget && edges.filter((edge: Edge) => edge.source === nodeId);
+    if(maxConnections && connections.length >= maxConnections){
+      isConnectable = false
+    }
 
     const onConnectExtended = (params: Connection) => {
       const { defaultEdgeOptions } = store.getState();
