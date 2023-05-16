@@ -183,7 +183,7 @@ export function getHandleType(
 }
 
 export function resetRecentHandle(handleDomNode: Element): void {
-  handleDomNode?.classList.remove('valid', 'connecting', 'react-flow__handle-valid', 'react-flow__handle-connecting');
+  handleDomNode?.classList.remove('valid', 'connecting', 'react-flow__node-valid', 'react-flow__node-connecting');
 }
 
 export function getConnectionStatus(isInsideConnectionRadius: boolean, isHandleValid: boolean) {

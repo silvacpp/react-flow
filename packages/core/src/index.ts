@@ -7,6 +7,9 @@ export { default as BezierEdge, getBezierPath } from './components/Edges/BezierE
 export { default as SimpleBezierEdge, getSimpleBezierPath } from './components/Edges/SimpleBezierEdge';
 export { default as SmoothStepEdge, getSmoothStepPath } from './components/Edges/SmoothStepEdge';
 export { default as BaseEdge } from './components/Edges/BaseEdge';
+export { 
+  getHostForElement
+} from './utils'
 
 export { internalsSymbol, rectToBox, boxToRect, getBoundsOfRects, clamp } from './utils';
 export {

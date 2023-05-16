@@ -21,7 +21,6 @@ const Marker = ({
   width = 12.5,
   height = 12.5,
   markerUnits = 'strokeWidth',
-  strokeWidth,
   orient = 'auto-start-reverse',
 }: MarkerProps) => {
   const Symbol = useMarkerSymbol(type);
@@ -42,7 +41,7 @@ const Marker = ({
       refX="0"
       refY="0"
     >
-      <Symbol color={color} strokeWidth={strokeWidth} />
+      <Symbol color={color} />
     </marker>
   );
 };

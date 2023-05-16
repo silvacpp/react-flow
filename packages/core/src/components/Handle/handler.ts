@@ -157,7 +157,7 @@ export function handlePointerDown({
       resetRecentHandle(prevActiveHandle);
       prevActiveHandle = handleDomNode;
       // @todo: remove the old class names "react-flow__handle-" in the next major version
-      handleDomNode.classList.add('connecting', 'react-flow__handle-connecting');
+      handleDomNode.classList.add('connecting', 'react-flow__node-connecting');
       handleDomNode.classList.toggle('valid', isValid);
       handleDomNode.classList.toggle('react-flow__handle-valid', isValid);
     }

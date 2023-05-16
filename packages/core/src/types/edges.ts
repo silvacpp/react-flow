@@ -19,6 +19,7 @@ type DefaultEdge<T = any> = {
   type?: string;
   source: string;
   target: string;
+  color?: string;
   sourceHandle?: string | null;
   targetHandle?: string | null;
   style?: CSSProperties;
@@ -98,7 +99,7 @@ export type WrapEdgeProps<T = any> = Omit<Edge<T>, 'sourceHandle' | 'targetHandl
 // props that get passed to a custom edge
 export type EdgeProps<T = any> = Pick<
   Edge<T>,
-  'id' | 'animated' | 'data' | 'style' | 'selected' | 'source' | 'target'
+  'id' | 'animated' | 'data' | 'style' | 'selected' | 'source' | 'target' | 'color'
 > &
   Pick<
     WrapEdgeProps,
@@ -106,6 +107,7 @@ export type EdgeProps<T = any> = Pick<
     | 'sourceY'
     | 'targetX'
     | 'targetY'
+    | 'color'
     | 'sourcePosition'
     | 'targetPosition'
     | 'sourceHandleId'

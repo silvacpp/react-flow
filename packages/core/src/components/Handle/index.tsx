@@ -7,7 +7,7 @@ import { useNodeId } from '../../contexts/NodeIdContext';
 import { handlePointerDown } from './handler';
 import { getHostForElement, isMouseEvent } from '../../utils';
 import { addEdge } from '../../utils/graph';
-import { type HandleProps, type Connection, type ReactFlowState, HandleType, Position } from '../../types';
+import { type HandleProps, type Connection, type ReactFlowState, HandleType, Position, Edge } from '../../types';
 import { isValidHandle } from './utils';
 import { errorMessages } from '../../contants';
 
@@ -45,9 +45,11 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
       position = Position.Top,
       isValidConnection,
       isConnectable = true,
+      maxConnections = 1,
       isConnectableStart = true,
       isConnectableEnd = true,
       id,
+      color,
       onConnect,
       children,
       className,
@@ -58,6 +60,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     ref
   ) => {
     const handleId = id || null;
+    const handleColor = color || null;
     const isTarget = type === 'target';
     const store = useStoreApi();
     const nodeId = useNodeId();
@@ -92,6 +95,17 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
       const isMouseTriggered = isMouseEvent(event);
 
       if (isConnectableStart && ((isMouseTriggered && event.button === 0) || !isMouseTriggered)) {
+
+        const state = store.getState();
+        const connections = state.edges.filter(
+          (edge: Edge) => edge.source === nodeId && edge.sourceHandle === handleId
+        );
+  
+        if (!isTarget && connections.length >= maxConnections) {
+          return;
+        }
+
+        
         handlePointerDown({
           event,
           handleId,
@@ -103,6 +117,8 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
           isValidConnection: isValidConnection || store.getState().isValidConnection || alwaysValid,
         });
       }
+      
+     
 
       if (isMouseTriggered) {
         onMouseDown?.(event);
@@ -113,7 +129,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
 
     const onClick = (event: ReactMouseEvent) => {
       const {
-        onClickConnectStart,
+        // onClickConnectStart,
         onClickConnectEnd,
         connectionClickStartHandle,
         connectionMode,
@@ -125,7 +141,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
       }
 
       if (!connectionClickStartHandle) {
-        onClickConnectStart?.(event, { nodeId, handleId, handleType: type });
+        // onClickConnectStart?.(event, { nodeId, handleId, handleType: type });
         store.setState({ connectionClickStartHandle: { nodeId, type, handleId } });
         return;
       }
@@ -159,6 +175,7 @@ const Handle = forwardRef<HTMLDivElement, HandleComponentProps>(
     return (
       <div
         data-handleid={handleId}
+        data-handlecolor={handleColor}
         data-nodeid={nodeId}
         data-handlepos={position}
         data-id={`${nodeId}-${handleId}-${type}`}

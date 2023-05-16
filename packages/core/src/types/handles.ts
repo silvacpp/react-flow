@@ -6,6 +6,7 @@ export type HandleElement = XYPosition &
   Dimensions & {
     id?: string | null;
     position: Position;
+    color?: string | null;
   };
 
 export type ConnectingHandle = {
@@ -17,6 +18,7 @@ export type ConnectingHandle = {
 export type HandleProps = {
   type: HandleType;
   position: Position;
+  maxConnections?: Number;
   isConnectable?: boolean;
   isConnectableStart?: boolean;
   isConnectableEnd?: boolean;
