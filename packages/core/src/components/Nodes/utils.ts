@@ -26,10 +26,12 @@ export const getHandleBounds = (
 
   return handlesArray.map((handle): HandleElement => {
     const handleBounds = handle.getBoundingClientRect();
+    const handleColor = handle.getAttribute('data-handlecolor') as string;
 
     return {
       id: handle.getAttribute('data-handleid'),
       position: handle.getAttribute('data-handlepos') as unknown as Position,
+      color: handleColor || 'blue',
       x: (handleBounds.left - nodeBounds.left - nodeOffset.x) / zoom,
       y: (handleBounds.top - nodeBounds.top - nodeOffset.y) / zoom,
       ...getDimensions(handle),
