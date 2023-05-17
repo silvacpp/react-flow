@@ -7,7 +7,6 @@
   "private": true,
   "scripts": {
     "prepare": "turbo run build",
-    // "preinstall": "npx only-allow pnpm",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
