@@ -6,14 +6,13 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "prepare": "turbo run build",
+    "prepare": "yarn build",
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
-    "release": "changeset publish",
-    "clean": "pnpm -r --parallel exec rimraf dist .turbo node_modules"
+    "release": "changeset publish"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.7",
